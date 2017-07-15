@@ -1,24 +1,29 @@
 jQuery(document).ready(function($) {
 		$(document).ready(function(){
-			
+
 			var smp_cookie_name_a = smp_vars.cookie_id + '_a';
 			var smp_cookie_name_b = smp_vars.cookie_id + '_b';
 			var smp_cookie_num_visits = smp_vars.cookie_num_visits;
 			var smp_show_mode = smp_vars.show_mode;
 			var smp_popup_url = smp_vars.popup_url;
-			
+
+			var unit = "px";
+		  if (smp_vars.popup_width <= 100 && smp_vars.popup_height <= 100) {
+	      unit = "%";
+	    }
+
 			function smp_show_popup(){
 				setTimeout(function() 	{ 
 											$.colorbox({
 											fixed: true,
-											width:smp_vars.popup_width+"px", 
-											height:smp_vars.popup_height+"px", 
-											iframe:true, 
-											opacity:smp_vars.popup_opacity, 
-											speed:smp_vars.popup_speed, 
-											overlayClose:smp_vars.overlay_close, 
-											href:smp_popup_url}) 
-										}, 
+											width:smp_vars.popup_width + unit,
+											height:smp_vars.popup_height + unit,
+											iframe:true,
+											opacity:smp_vars.popup_opacity,
+											speed:smp_vars.popup_speed,
+											overlayClose:smp_vars.overlay_close,
+											href:smp_popup_url})
+										},
 										smp_vars.popup_delay);
 			}
 			function smp_reset_cookies(){

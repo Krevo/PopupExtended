@@ -1,14 +1,11 @@
 <?php
 /*
-Plugin Name: WP Super Popup
-Plugin Script: wp-super-popup.php
-Plugin URI: http://wppluginspro.com/wp-super-popup-pro/
-Description: Creates unblockable, dynamic and fully configurable popups for your blog. It works also if WP Super Cache or W3 Total Cache is enabled!
-Version: 1.1.2
+Plugin Name: Popup Extended
+Description: Fork of WP Super Popup to understand width and height as "%" (instead of "px") if both value <= 100
+Version: 0.1
 License: GPL
-Author: WP Plugins Pro
-Author URI: http://wppluginspro.com
-
+Author: François Crevola
+Author URI: https://www.crevola.org/francois/
 */
 
 /*
@@ -249,7 +246,7 @@ ADMIN
 
 function smp_plugin_actions( $links, $file ) {
 	if( $file == 'wp-super-popup/wp-super-popup.php' && function_exists( "admin_url" ) ) {
-		$settings_link = '<a href="' . admin_url( 'admin.php?page=wp-super-popup/wp-super-popup.php' ) . '">' . __('Settings') . '</a>';
+		$settings_link = '<a href="' . admin_url( 'admin.php?page=popupExtended/popupExtended.php' ) . '">' . __('Settings') . '</a>';
 		array_unshift( $links, $settings_link ); // before other links
 	}
 	return $links;
