@@ -206,8 +206,8 @@ function smp_add_js(){
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script('smp_colorbox',	$smp_plugin_url_base . '/jquery.colorbox-min.js', array('jquery'), mt_rand() );
 	wp_enqueue_script('smp_cookie',	$smp_plugin_url_base . '/jquery.utils-min.js',	array('jquery'), mt_rand() );
-	wp_enqueue_script( 'smp-script', $smp_plugin_url_base . '/wp-super-popup.js', array( 'jquery' ), rand() );
-	
+	wp_enqueue_script( 'smp-script', $smp_plugin_url_base . '/popupExtended.js', array( 'jquery' ), rand() );
+
 	$options = get_option('smp-options');
 	if ($options['load_mode'] == 1){
 		$smp_popup_url = $options['popup_url'];
@@ -245,7 +245,7 @@ ADMIN
 */
 
 function smp_plugin_actions( $links, $file ) {
-	if( $file == 'wp-super-popup/wp-super-popup.php' && function_exists( "admin_url" ) ) {
+	if( $file == 'popupExtended/popupExtended.php' && function_exists( "admin_url" ) ) {
 		$settings_link = '<a href="' . admin_url( 'admin.php?page=popupExtended/popupExtended.php' ) . '">' . __('Settings') . '</a>';
 		array_unshift( $links, $settings_link ); // before other links
 	}
@@ -255,8 +255,8 @@ add_filter( 'plugin_action_links', 'smp_plugin_actions', 10, 2 );
 
 function smp_admin_notice() {
 	if( substr( $_SERVER["PHP_SELF"], -11 ) == 'plugins.php' && function_exists( "admin_url" ) )
-		echo '<div class="error"><p><strong>' . sprintf( 'WP Super Popup is disabled. Please go to the <a href="%s">plugin admin page</a> to enable it.', 
-				admin_url( 'admin.php?page=wp-super-popup/wp-super-popup.php' ) ) . '</strong></p></div>';
+		echo '<div class="error"><p><strong>' . sprintf( 'Popup Extended is disabled. Please go to the <a href="%s">plugin admin page</a> to enable it.',
+				admin_url( 'admin.php?page=popupExtended/popupExtended.php' ) ) . '</strong></p></div>';
 }
 add_action( 'admin_notices', 'smp_admin_notice' );
 
@@ -439,24 +439,10 @@ function smp_settings_page() {
 	global $smp_plugin_url_base;
 ?>
 <div class="wrap">
-	<h2>WP Super Popup</h2>
-		
-	<div style="width: 832px;">
-		<div style="float: left; background-color: white; padding: 10px; margin-right: 15px; border: 1px solid rgb(221, 221, 221);">
-		<div style="width: 350px; height: 80px;">
-		<em>Need support and more advanced features like visitor email auto-load, sliding popups, <strong>exit popups</strong> and much more? <br/>Check now <strong><a href="http://wppluginspro.com?utm_source=superpopup&utm_medium=pluginadmin&utm_campaign=products">WP Super Popup PRO</a>!</strong></em>
-		</div>
-		</div>
-		
-		<div style="float: left; background-color: white; padding: 10px; border: 1px solid rgb(221, 221, 221);">
-		<div style="width: 350px; height: 80px;">
-		<em>Interested in boosting traffic and sales by sending Push Notifications to your visitors browsers? <br/>Check now <strong><a href="http://www.pushdominator.com?utm_source=superpopup&utm_medium=pluginadmin&utm_campaign=products">Push Dominator</a>!</strong></em>
-		</div>
-		</div>
-	</div>
-	
+	<h2>Popup Extended</h2>
+
 	<div style="clear:both;"></div>
-  <?php      
+  <?php
   if (strlen($options['messages']) > 0){
   echo '<div class="error fade" style="background-color:red;"><p>' . $options['messages'] .'</p></div>';
   }?>
